@@ -11,6 +11,7 @@ import "./index.css";
 import App from "./components/App";
 import Signin from "./components/Auth/Signin";
 import Signup from "./components/Auth/Signup";
+import withSession from "./components/withSession";
 
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
@@ -46,9 +47,11 @@ const Root = () => (
   </Router>
 );
 
+const RootWithSession = withSession(Root);
+
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Root />
+    <RootWithSession />
   </ApolloProvider>,
   document.getElementById("root")
 );
