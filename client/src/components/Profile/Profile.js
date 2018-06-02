@@ -1,5 +1,10 @@
 import React from "react";
+import UserInfo from "./UserInfo";
 
-const Profile = () => <div>Profile</div>;
+const Profile = ({ session }) => (
+  <div className="App">
+    <UserInfo session={session} />
+  </div>
+);
 
 export default Profile;
