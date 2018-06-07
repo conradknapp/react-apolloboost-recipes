@@ -4,7 +4,7 @@
   "description": "A starter for React-Apollo-GraphQL projects",
   "main": "server.js",
   "scripts": {
-    "start": "node ./server.js",
+    "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently --names \"server,client\" \"npm run server --silent\" \"npm run client --silent\"",
