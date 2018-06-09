@@ -31,7 +31,7 @@ mongoose
 const app = express();
 
 const corsOptions = {
-  origin: "https://react-apollo-recipes.herokuapp.com",
+  origin: "http://localhost:80",
   credentials: true
 };
 app.use(cors(corsOptions));
