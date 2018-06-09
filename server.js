@@ -30,11 +30,11 @@ mongoose
 // Initializes application
 const app = express();
 
-const corsOptions = {
-  origin: "http://localhost:80",
-  credentials: true
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: "http://localhost:80",
+//   credentials: true
+// };
+app.use(cors("*"));
 
 // Set up JWT authentication middleware
 app.use(async (req, res, next) => {
