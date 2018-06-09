@@ -22,7 +22,7 @@ import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
 const client = new ApolloClient({
-  uri: "http://localhost:80/graphql",
+  uri: "https://react-apollo-recipes.com/graphql",
   fetchOptions: {
     credentials: "include"
   },
