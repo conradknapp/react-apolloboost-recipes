@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import CKEditor from "react-ckeditor-component";
 
 import { Mutation } from "react-apollo";
 import { ADD_RECIPE, GET_ALL_RECIPES, GET_USER_RECIPES } from "../../queries";
@@ -33,6 +34,11 @@ class AddRecipe extends React.Component {
     this.setState({ [name]: value });
   };
 
+  handleEditorChange = event => {
+    const newContent = event.editor.getData();
+    this.setState({ instructions: newContent });
+  };
+
   handleSubmit = (event, addRecipe) => {
     event.preventDefault();
     addRecipe().then(({ data }) => {
@@ -44,7 +50,8 @@ class AddRecipe extends React.Component {
 
   validateForm = () => {
     const { name, imageUrl, category, description, instructions } = this.state;
-    const isInvalid = !name || !imageUrl || !category || !description || !instructions;
+    const isInvalid =
+      !name || !imageUrl || !category || !description || !instructions;
     return isInvalid;
   };
 
@@ -60,12 +67,26 @@ class AddRecipe extends React.Component {
   };
 
   render() {
-    const { name, imageUrl, category, description, instructions, username } = this.state;
+    const {
+      name,
+      imageUrl,
+      category,
+      description,
+      instructions,
+      username
+    } = this.state;
 
     return (
       <Mutation
         mutation={ADD_RECIPE}
-        variables={{ name, imageUrl, category, description, instructions, username }}
+        variables={{
+          name,
+          imageUrl,
+          category,
+          description,
+          instructions,
+          username
+        }}
         refetchQueries={() => [
           { query: GET_USER_RECIPES, variables: { username } }
         ]}
@@ -110,12 +131,18 @@ class AddRecipe extends React.Component {
                   onChange={this.handleChange}
                   value={description}
                 />
-                <textarea
+                <label htmlFor="instructions">Add Instructions</label>
+                <CKEditor
+                  name="instructions"
+                  content={instructions}
+                  events={{ change: this.handleEditorChange }}
+                />
+                {/* <textarea
                   name="instructions"
                   placeholder="Add instructions"
                   onChange={this.handleChange}
                   value={instructions}
-                />
+                /> */}
                 <button
                   disabled={loading || this.validateForm()}
                   type="submit"
