@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin-top: 1em;
 }
 
 nav {
@@ -246,7 +247,8 @@ nav a:link {
 .search {
   font-size: 3rem;
   transition: width 0.2s ease-in;
-  margin: 2em;
+  margin-top: 0.3em;
+  margin-bottom: 1em;
   width: 10em;
 }
 
