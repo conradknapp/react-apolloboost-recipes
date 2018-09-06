@@ -35,9 +35,9 @@ const client = new ApolloClient({
     });
   },
   onError: ({ networkError }) => {
-    if (networkError) {
-      localStorage.setItem("token", "");
-    }
+    // if (networkError) {
+    //   localStorage.setItem("token", "");
+    // }
   }
 });
 
