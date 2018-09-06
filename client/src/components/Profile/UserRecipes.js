@@ -12,6 +12,7 @@ import Spinner from "../Spinner";
 
 class UserRecipes extends React.Component {
   state = {
+    _id: "",
     name: "",
     imageUrl: "",
     category: "",
@@ -35,6 +36,10 @@ class UserRecipes extends React.Component {
     }
   };
 
+  loadRecipe = recipe => {
+    this.setState({ ...recipe, modal: true });
+  };
+
   closeModal = () => {
     this.setState({ modal: false });
   };
@@ -52,6 +57,7 @@ class UserRecipes extends React.Component {
             <ul>
               {modal && (
                 <EditRecipeModal
+                  recipe={this.state}
                   closeModal={this.closeModal}
                   handleChange={this.handleChange}
                 />
@@ -96,7 +102,7 @@ class UserRecipes extends React.Component {
                       <div>
                         <button
                           className="button-primary"
-                          onClick={() => this.setState({ modal: true })}
+                          onClick={() => this.loadRecipe(recipe)}
                         >
                           Update
                         </button>
@@ -119,7 +125,7 @@ class UserRecipes extends React.Component {
   }
 }
 
-const EditRecipeModal = ({ handleChange, closeModal }) => (
+const EditRecipeModal = ({ recipe, handleChange, closeModal }) => (
   <div className="modal modal-open">
     <div className="modal-inner">
       <div className="modal-content">
@@ -127,18 +133,37 @@ const EditRecipeModal = ({ handleChange, closeModal }) => (
           <h4>Edit Recipe</h4>
 
           <label htmlFor="name">Recipe Name</label>
-          <input type="text" name="name" onChange={handleChange} />
+          <input
+            type="text"
+            name="name"
+            onChange={handleChange}
+            value={recipe.name}
+          />
           <label htmlFor="imageUrl">Recipe Image</label>
-          <input type="text" name="imageUrl" onChange={handleChange} />
+          <input
+            type="text"
+            name="imageUrl"
+            onChange={handleChange}
+            value={recipe.imageUrl}
+          />
           <label htmlFor="category">Category of Recipe</label>
-          <select name="category" onChange={handleChange}>
+          <select
+            name="category"
+            onChange={handleChange}
+            value={recipe.category}
+          >
             <option value="Breakfast">Breakfast</option>
             <option value="Lunch">Lunch</option>
             <option value="Dinner">Dinner</option>
             <option value="Snack">Snack</option>
           </select>
           <label htmlFor="description">Recipe Description</label>
-          <input type="text" name="description" onChange={handleChange} />
+          <input
+            type="text"
+            name="description"
+            onChange={handleChange}
+            value={recipe.description}
+          />
 
           <hr />
           <div className="modal-buttons">
